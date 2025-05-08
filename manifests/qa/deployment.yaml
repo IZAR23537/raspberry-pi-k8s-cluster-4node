@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: qa-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: qa-app
+  template:
+    metadata:
+      labels:
+        app: qa-app
+    spec:
+      nodeSelector:
+        env: qa
+      containers:
+      - name: app
+        image: nginx
+        ports:
+        - containerPort: 80
